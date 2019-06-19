@@ -1,14 +1,17 @@
 "use strict";
 
 var arr = new Array();
-showData();
+showData(); //delete the data from the local storage
 
 function deleteData(index) {
   arr.splice(parseInt(index), 1);
   var value = JSON.stringify(arr);
-  localStorage.setItem("localData", value);
+  localStorage.setItem("localData", value); //display the local storage data after deleting
+
   showData();
 }
+
+; //edit the data in the local storage
 
 function editData(index) {
   document.getElementById("fName").value = arr[index].fName;
@@ -20,16 +23,17 @@ function editData(index) {
   document.getElementById("saveBtn").style.display = "block";
   document.getElementById("saveBtn").addEventListener("click", function () {
     var localData = JSON.parse(localStorage.localData);
-    localData[index].fName = document.getElementById("fName").value;
-    localData[index].lName = document.getElementById("lName").value;
-    localData[index].age = document.getElementById("age").value;
-    localData[index].email = document.getElementById("email").value;
-    localData[index].number = document.getElementById("number").value;
-    localStorage.setItem("localData", JSON.stringify(localData));
+    arr[index].fName = document.getElementById("fName").value;
+    arr[index].lName = document.getElementById("lName").value;
+    arr[index].age = document.getElementById("age").value;
+    arr[index].email = document.getElementById("email").value;
+    arr[index].number = document.getElementById("number").value;
+    localStorage.setItem("localData", JSON.stringify(arr));
     showData();
   });
-} //add data to local storage
+}
 
+; //add data to local storage
 
 function addData() {
   arr.push({
@@ -63,14 +67,14 @@ function showData() {
 
     for (var i = 0; i < arr.length; i++) {
       var r = tbl.insertRow();
-      r.innerHTML = "\n          <td>".concat(arr[i].fName, "</td>\n          <td>").concat(arr[i].lName, "</td>\n          <td>").concat(arr[i].age, "</td>\n          <td>").concat(arr[i].email, "</td>\n          <td>").concat(arr[i].number, "</td>\n          <td>\n            <button type=\"button\" class=\"btn btn-warning\" onClick=\"editData(").concat(i, ");\"> Edit </button>\n            <button type=\"button\" class=\"btn btn-danger\" onClick=\"deleteData(").concat(i, ");\"> Delete </button>\n          </td>");
+      r.innerHTML = "\n        <td>".concat(arr[i].fName, "</td>\n        <td>").concat(arr[i].lName, "</td>\n        <td>").concat(arr[i].age, "</td>\n        <td>").concat(arr[i].email, "</td>\n        <td>").concat(arr[i].number, "</td>\n        <td>\n          <button type=\"button\" class=\"btn btn-warning\" onClick=\"editData(").concat(i, ");\"> Edit </button>\n          <button type=\"button\" class=\"btn btn-danger\" onClick=\"deleteData(").concat(i, ");\"> Delete </button>\n        </td>");
     }
   }
 
   init();
 }
 
-;
+; //how the screen should look initially
 
 function init() {
   document.getElementById("fName").value = "";
@@ -82,7 +86,7 @@ function init() {
   document.getElementById("addBtn").style.display = "block";
 }
 
-;
+; //empty the local storage
 
 function deleteLocalStorageData() {
   localStorage.clear();
