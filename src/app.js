@@ -1,10 +1,37 @@
-  
+
   let arr = new Array();
 
   showData();
 
-  function deleteData(i) {
-    localStorage.setItem('localData', JSON.stringify(JSON.parse(localStorage.getItem('localData')).splice(parseInt(i), 1)));
+  function deleteData(index) {
+    arr.splice(parseInt(index), 1);
+    let value = JSON.stringify(arr);
+    localStorage.setItem("localData",value);
+    showData();
+  }
+
+  function editData(index) {
+
+    document.getElementById("fName").value = arr[index].fName;
+    document.getElementById("lName").value = arr[index].lName;
+    document.getElementById("age").value = arr[index].age;
+    document.getElementById("email").value = arr[index].email;
+    document.getElementById("number").value = arr[index].number;
+
+    document.getElementById("addBtn").style.display = "none";
+    document.getElementById("saveBtn").style.display = "block";
+
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      let localData = JSON.parse(localStorage.localData);
+      localData[index].fName = document.getElementById("fName").value;
+      localData[index].lName = document.getElementById("lName").value;
+      localData[index].age = document.getElementById("age").value;
+      localData[index].email = document.getElementById("email").value;
+      localData[index].number = document.getElementById("number").value;
+      localStorage.setItem("localData", JSON.stringify(localData));
+      showData();
+    });
+
   }
 
   //add data to local storage
@@ -20,33 +47,16 @@
   
     //displaying the added data
     showData();
-    // let tr=document.createElement("tr");
-    // tr.innerHTML=`
-    //   <td>${document.getElementById("fName").value}</td>
-    //   <td>${document.getElementById("lName").value}</td>
-    //   <td>${document.getElementById("age").value}</td>
-    //   <td>${document.getElementById("email").value}</td>
-    //   <td>${document.getElementById("number").value}</td>
-    //   <td>
-    //     <button type="button" class="btn btn-warning" id="editBtn"> Edit </button>
-    //     <button type="button" class="btn btn-danger" onClick="deleteData(${i});"> Delete </button>
-    //   </td>`;
-    // document.getElementById("tableDisplay").appendChild(tr);
 
     //clearing the input feild
-    document.getElementById("fName").value = "";
-    document.getElementById("lName").value = "";
-    document.getElementById("age").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("number").value = "";
-
+    init();
   };
 
   //get data from local storage and display the local storage data on the screen
   function showData(){
     let tbl = document.getElementById("tableDisplay");
     let str = localStorage.getItem("localData");
-    var x = tbl.rows.length;
+    let x = tbl.rows.length;
 
     while(--x){
       tbl.deleteRow(x);
@@ -63,11 +73,22 @@
           <td>${arr[i].email}</td>
           <td>${arr[i].number}</td>
           <td>
-            <button type="button" class="btn btn-warning" id="editBtn"> Edit </button>
+            <button type="button" class="btn btn-warning" onClick="editData(${i});"> Edit </button>
             <button type="button" class="btn btn-danger" onClick="deleteData(${i});"> Delete </button>
           </td>`;
       }
     }
+    init();
+  };
+
+  function init(){
+    document.getElementById("fName").value = "";
+    document.getElementById("lName").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("number").value = "";
+    document.getElementById("saveBtn").style.display = "none";
+    document.getElementById("addBtn").style.display = "block";
   };
 
   function deleteLocalStorageData(){
