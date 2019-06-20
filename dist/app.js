@@ -1,6 +1,7 @@
 "use strict";
 
 var arr = new Array();
+var editIndex = null;
 showData(); //delete the data from the local storage
 
 function deleteData(index) {
@@ -14,6 +15,7 @@ function deleteData(index) {
 ; //edit the data in the local storage
 
 function editData(index) {
+  editIndex = index;
   document.getElementById("fName").value = arr[index].fName;
   document.getElementById("lName").value = arr[index].lName;
   document.getElementById("age").value = arr[index].age;
@@ -21,19 +23,18 @@ function editData(index) {
   document.getElementById("number").value = arr[index].number;
   document.getElementById("addBtn").style.display = "none";
   document.getElementById("saveBtn").style.display = "block";
-  document.getElementById("saveBtn").addEventListener("click", function () {
-    var localData = JSON.parse(localStorage.localData);
-    arr[index].fName = document.getElementById("fName").value;
-    arr[index].lName = document.getElementById("lName").value;
-    arr[index].age = document.getElementById("age").value;
-    arr[index].email = document.getElementById("email").value;
-    arr[index].number = document.getElementById("number").value;
-    localStorage.setItem("localData", JSON.stringify(arr));
-    showData();
-  });
 }
 
-; //add data to local storage
+;
+document.getElementById("saveBtn").addEventListener("click", function () {
+  arr[editIndex].fName = document.getElementById("fName").value;
+  arr[editIndex].lName = document.getElementById("lName").value;
+  arr[editIndex].age = document.getElementById("age").value;
+  arr[editIndex].email = document.getElementById("email").value;
+  arr[editIndex].number = document.getElementById("number").value;
+  localStorage.setItem("localData", JSON.stringify(arr));
+  showData();
+}); //add data to local storage
 
 function addData() {
   arr.push({
