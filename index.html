@@ -15,7 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -54,38 +54,38 @@
       <div class="border border-dark rounded bg-warning p-3 mt-3">
         <form>
           <div class="form-group row">
-            <label for="name" class="col-md-2 col-form-label">First Name</label>
+            <label for="fName" class="col-md-2 col-form-label">First Name</label>
             <div class="col-md-10">
-              <input class="form-control" type="text" placeholder="First Name" id="fName">
+              <input type="text" name="fName" class="form-control" id="fName" placeholder="First Name" required autofocus>
             </div>
           </div>
           <div class="form-group row">
-            <label for="name" class="col-md-2 col-form-label">Last Name</label>
+            <label for="lName" class="col-md-2 col-form-label">Last Name</label>
             <div class="col-md-10">
-              <input class="form-control" type="text" placeholder="Last Name" id="lName">
+              <input type="text" name="lName" class="form-control" id="lName" placeholder="Last Name">
             </div>
           </div>
           <div class="form-group row">
-            <label for="number" class="col-md-2 col-form-label">Age</label>
+            <label for="age" class="col-md-2 col-form-label">Age</label>
             <div class="col-md-10">
-              <input class="form-control" type="number" placeholder="Age" id="age">
+              <input type="number" name="age" class="form-control" id="age" placeholder="Age">
             </div>
           </div>
           <div class="form-group row">
             <label for="email" class="col-md-2 col-form-label">Email</label>
             <div class="col-md-10">
-              <input class="form-control" type="email" placeholder="emailaddress@example.com" id="email">
+              <input type="email" name="email" class="form-control" id="email" placeholder="Email Address" required autofocus>
             </div>
           </div>
           <div class="form-group row">
             <label for="number" class="col-md-2 col-form-label">Contact Number</label>
             <div class="col-md-10">
-              <input class="form-control" type="text" placeholder="Call On" id="number">
+              <input type="text" name="number" class="form-control" id="number" placeholder="Call On" required autofocus minlength="10" maxlength="13">
             </div>
           </div>
-        </form>    
-        <button class="btn btn-primary btn-block" id="addBtn"> ADD </button>
-        <button class="btn btn-primary btn-block" id="saveBtn"> SAVE </button>
+          <button class="btn btn-primary btn-block" id="addBtn" type="submit"> ADD </button>
+          <button class="btn btn-primary btn-block" id="saveBtn" type="submit"> SAVE </button>
+        </form>
       </div>
     </div>
 

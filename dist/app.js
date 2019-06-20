@@ -37,12 +37,48 @@ document.getElementById("saveBtn").addEventListener("click", function () {
 }); //add data to local storage
 
 function addData() {
+  var var1 = document.getElementById("fName").value;
+  var var2 = document.getElementById("lName").value;
+  var var3 = document.getElementById("age").value;
+  var var4 = document.getElementById("email").value;
+  var var5 = document.getElementById("number").value;
+
+  if (var1 === "") {
+    alert("Please Fill Your First Name");
+    document.getElementById("fName").focus();
+    return false;
+  }
+
+  if (var2 === "") {
+    alert("Please Fill Your Last Name");
+    document.getElementById("lName").focus();
+    return false;
+  }
+
+  if (var3 === "") {
+    alert("Please Fill Your Age");
+    document.getElementById("age").focus();
+    return false;
+  }
+
+  if (var4 === "") {
+    alert("Please Fill Your Email");
+    document.getElementById("email").focus();
+    return false;
+  }
+
+  if (var5 === "") {
+    alert("Please Fill Your Mobile Number");
+    document.getElementById("number").focus();
+    return false;
+  }
+
   arr.push({
-    fName: document.getElementById("fName").value,
-    lName: document.getElementById("lName").value,
-    age: document.getElementById("age").value,
-    email: document.getElementById("email").value,
-    number: document.getElementById("number").value
+    fName: var1,
+    lName: var2,
+    age: var3,
+    email: var4,
+    number: var5
   });
   localStorage.setItem("localData", JSON.stringify(arr)); //displaying the added data
 
