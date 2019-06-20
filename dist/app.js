@@ -31,7 +31,19 @@ document.getElementById("saveBtn").addEventListener("click", function () {
   arr[editIndex].lName = document.getElementById("lName").value;
   arr[editIndex].age = document.getElementById("age").value;
   arr[editIndex].email = document.getElementById("email").value;
-  arr[editIndex].number = document.getElementById("number").value;
+  arr[editIndex].number = document.getElementById("number").value; // if(arr[editIndex].fName.trim()==""){ 
+  //   alert("Please fill Your First Name!"); 
+  //   return false; 
+  // } 
+  // if(arr[editIndex].email.trim()==""){ 
+  //   alert("Please fill Your Email Address!"); 
+  //   return false; 
+  // } 
+  // if(arr[editIndex].number.trim()==""){ 
+  //   alert("Please fill Your Contact Number!"); 
+  //   return false; 
+  // } 
+
   localStorage.setItem("localData", JSON.stringify(arr));
   showData();
 }); //add data to local storage
@@ -41,37 +53,18 @@ function addData() {
   var var2 = document.getElementById("lName").value;
   var var3 = document.getElementById("age").value;
   var var4 = document.getElementById("email").value;
-  var var5 = document.getElementById("number").value;
-
-  if (var1 === "") {
-    alert("Please Fill Your First Name");
-    document.getElementById("fName").focus();
-    return false;
-  }
-
-  if (var2 === "") {
-    alert("Please Fill Your Last Name");
-    document.getElementById("lName").focus();
-    return false;
-  }
-
-  if (var3 === "") {
-    alert("Please Fill Your Age");
-    document.getElementById("age").focus();
-    return false;
-  }
-
-  if (var4 === "") {
-    alert("Please Fill Your Email");
-    document.getElementById("email").focus();
-    return false;
-  }
-
-  if (var5 === "") {
-    alert("Please Fill Your Mobile Number");
-    document.getElementById("number").focus();
-    return false;
-  }
+  var var5 = document.getElementById("number").value; // if(var1.trim()==""){ 
+  //   alert("Please fill Your First Name!"); 
+  //   return false; 
+  // } 
+  // if(var4.trim()==""){ 
+  //   alert("Please fill Your Email Address!"); 
+  //   return false; 
+  // } 
+  // if(var5.trim()==""){ 
+  //   alert("Please fill Your Contact Number!"); 
+  //   return false; 
+  // } 
 
   arr.push({
     fName: var1,
@@ -130,6 +123,6 @@ function deleteLocalStorageData() {
   document.getElementById("tableDisplay").innerHTML = "All Data Deleted!";
 }
 
-;
-document.getElementById("addBtn").addEventListener("click", addData);
+; // document.getElementById("addBtn").addEventListener("click", addData);
+
 document.getElementById("clearBtn").addEventListener("click", deleteLocalStorageData);
