@@ -9,8 +9,7 @@ function deleteData(index) {
   localStorage.setItem("localData", value); 
   
   //display the local storage data after deleting
-  //todo; DELETE ROW INSTEAD OF SHOWDATA
-  //showData();
+  showData();
 }; 
 
 //edit the data in the local storage
@@ -25,58 +24,29 @@ function editData(index) {
   document.getElementById("saveBtn").style.display = "block";
 }; 
 
-document.getElementById("saveBtn").addEventListener("click", function () {
+function saveEdit() {
 
-  arr[editIndex].fName = document.getElementById("fName").value;
-  arr[editIndex].lName = document.getElementById("lName").value;
-  arr[editIndex].age = document.getElementById("age").value;
-  arr[editIndex].email = document.getElementById("email").value;
-  arr[editIndex].number = document.getElementById("number").value;
-
-  // if(arr[editIndex].fName.trim()==""){ 
-  //   alert("Please fill Your First Name!"); 
-  //   return false; 
-  // } 
-  // if(arr[editIndex].email.trim()==""){ 
-  //   alert("Please fill Your Email Address!"); 
-  //   return false; 
-  // } 
-  // if(arr[editIndex].number.trim()==""){ 
-  //   alert("Please fill Your Contact Number!"); 
-  //   return false; 
-  // } 
+  arr[editIndex] = {
+    fName: document.getElementById("fName").value,
+    lName: document.getElementById("lName").value,
+    age: document.getElementById("age").value,
+    email: document.getElementById("email").value,
+    number: document.getElementById("number").value
+  };
 
   localStorage.setItem("localData", JSON.stringify(arr));
   showData();
-});
+};
 
 //add data to local storage
 function addData() {
-  let var1 = document.getElementById("fName").value;
-  let var2 = document.getElementById("lName").value;
-  let var3 = document.getElementById("age").value;
-  let var4 = document.getElementById("email").value;
-  let var5 = document.getElementById("number").value;
-
-  // if(var1.trim()==""){ 
-  //   alert("Please fill Your First Name!"); 
-  //   return false; 
-  // } 
-  // if(var4.trim()==""){ 
-  //   alert("Please fill Your Email Address!"); 
-  //   return false; 
-  // } 
-  // if(var5.trim()==""){ 
-  //   alert("Please fill Your Contact Number!"); 
-  //   return false; 
-  // } 
-
+  
   arr.push({
-    fName: var1,
-    lName: var2,
-    age: var3,
-    email: var4,
-    number: var5
+    fName: document.getElementById("fName").value,
+    lName: document.getElementById("lName").value,
+    age: document.getElementById("age").value,
+    email: document.getElementById("email").value,
+    number: document.getElementById("number").value
   });
 
   localStorage.setItem("localData", JSON.stringify(arr)); 
@@ -136,6 +106,3 @@ function deleteLocalStorageData() {
   localStorage.clear();
   document.getElementById("tableDisplay").innerHTML = "All Data Deleted!";
 };
-
-// document.getElementById("addBtn").addEventListener("click", addData);
-document.getElementById("clearBtn").addEventListener("click", deleteLocalStorageData);

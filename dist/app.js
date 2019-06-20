@@ -2,7 +2,8 @@
 
 var arr = new Array();
 var editIndex = null;
-showData(); //delete the data from the local storage
+showData(); //
+//delete the data from the local storage
 
 function deleteData(index) {
   arr.splice(parseInt(index), 1);
@@ -26,52 +27,28 @@ function editData(index) {
 }
 
 ;
-document.getElementById("saveBtn").addEventListener("click", function () {
-  arr[editIndex].fName = document.getElementById("fName").value;
-  arr[editIndex].lName = document.getElementById("lName").value;
-  arr[editIndex].age = document.getElementById("age").value;
-  arr[editIndex].email = document.getElementById("email").value;
-  arr[editIndex].number = document.getElementById("number").value; // if(arr[editIndex].fName.trim()==""){ 
-  //   alert("Please fill Your First Name!"); 
-  //   return false; 
-  // } 
-  // if(arr[editIndex].email.trim()==""){ 
-  //   alert("Please fill Your Email Address!"); 
-  //   return false; 
-  // } 
-  // if(arr[editIndex].number.trim()==""){ 
-  //   alert("Please fill Your Contact Number!"); 
-  //   return false; 
-  // } 
 
+function saveEdit() {
+  arr[editIndex] = {
+    fName: document.getElementById("fName").value,
+    lName: document.getElementById("lName").value,
+    age: document.getElementById("age").value,
+    email: document.getElementById("email").value,
+    number: document.getElementById("number").value
+  };
   localStorage.setItem("localData", JSON.stringify(arr));
   showData();
-}); //add data to local storage
+}
+
+; //add data to local storage
 
 function addData() {
-  var var1 = document.getElementById("fName").value;
-  var var2 = document.getElementById("lName").value;
-  var var3 = document.getElementById("age").value;
-  var var4 = document.getElementById("email").value;
-  var var5 = document.getElementById("number").value; // if(var1.trim()==""){ 
-  //   alert("Please fill Your First Name!"); 
-  //   return false; 
-  // } 
-  // if(var4.trim()==""){ 
-  //   alert("Please fill Your Email Address!"); 
-  //   return false; 
-  // } 
-  // if(var5.trim()==""){ 
-  //   alert("Please fill Your Contact Number!"); 
-  //   return false; 
-  // } 
-
   arr.push({
-    fName: var1,
-    lName: var2,
-    age: var3,
-    email: var4,
-    number: var5
+    fName: document.getElementById("fName").value,
+    lName: document.getElementById("lName").value,
+    age: document.getElementById("age").value,
+    email: document.getElementById("email").value,
+    number: document.getElementById("number").value
   });
   localStorage.setItem("localData", JSON.stringify(arr)); //displaying the added data
 
@@ -123,6 +100,4 @@ function deleteLocalStorageData() {
   document.getElementById("tableDisplay").innerHTML = "All Data Deleted!";
 }
 
-; // document.getElementById("addBtn").addEventListener("click", addData);
-
-document.getElementById("clearBtn").addEventListener("click", deleteLocalStorageData);
+;
