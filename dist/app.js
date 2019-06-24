@@ -49,11 +49,7 @@ function () {
         }
       }
 
-      document.getElementById("fName").value = "";
-      document.getElementById("lName").value = "";
-      document.getElementById("age").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("number").value = "";
+      document.getElementById("formDetails").reset();
       document.getElementById("saveBtn").style.display = "none";
       document.getElementById("addBtn").style.display = "block";
     } //empty the local storage
@@ -103,13 +99,9 @@ function () {
       });
       localStorage.setItem("localData", JSON.stringify(this.arr));
       var tr = document.createElement("tr");
-      tr.innerHTML = "\n    <td>".concat(name, "</td>\n    <td>").concat(age, "</td>\n    <td>").concat(email, "</td>\n    <td>").concat(contact, "</td>\n    <td>\n      <button type=\"button\" class=\"btn btn-warning\" onClick=\"test.editData(").concat(i, ");\"> Edit </button>\n      <button type=\"button\" class=\"btn btn-danger\" onClick=\"test.deleteData(").concat(i, ");\"> Delete </button>\n    </td>");
+      tr.innerHTML = "\n    <td>".concat(fname, "</td>\n    <td>").concat(lname, "</td>\n    <td>").concat(age, "</td>\n    <td>").concat(email, "</td>\n    <td>").concat(contact, "</td>\n    <td>\n      <button type=\"button\" class=\"btn btn-warning\" onClick=\"test.editData(").concat(i, ");\"> Edit </button>\n      <button type=\"button\" class=\"btn btn-danger\" onClick=\"test.deleteData(").concat(i, ");\"> Delete </button>\n    </td>");
       document.getElementById("tableDisplay").appendChild(tr);
-      document.getElementById("fName").value = "";
-      document.getElementById("lName").value = "";
-      document.getElementById("age").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("number").value = "";
+      document.getElementById("formDetails").reset();
       document.getElementById("saveBtn").style.display = "none";
       document.getElementById("addBtn").style.display = "block";
     }

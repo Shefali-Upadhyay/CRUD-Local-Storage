@@ -1,5 +1,6 @@
 class UserDetails{
 
+  //intialising variables
   constructor()
   {
     this.arr = [];
@@ -11,6 +12,8 @@ class UserDetails{
     this.arr.splice(parseInt(index), 1);
     let value = JSON.stringify(this.arr);
     localStorage.setItem("localData", value); 
+
+    //removing the data displayed
     let td = event.target.parentNode; 
     let tr = td.parentNode;
     tr.parentNode.removeChild(tr);
@@ -22,9 +25,9 @@ class UserDetails{
     let str = localStorage.getItem("localData");
     let x = tbl.rows.length;
 
-  while(--x){
-    tbl.deleteRow(x);
-  }
+    while(--x){
+      tbl.deleteRow(x);
+    }
     //checking whether the local storage is not empty
     if (str != null) {
       this.arr = JSON.parse(str);
@@ -44,11 +47,7 @@ class UserDetails{
       }
     }
 
-    document.getElementById("fName").value = "";
-    document.getElementById("lName").value = "";
-    document.getElementById("age").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("number").value = "";
+    document.getElementById("formDetails").reset();
     document.getElementById("saveBtn").style.display = "none";
     document.getElementById("addBtn").style.display = "block";
   }
@@ -59,7 +58,7 @@ class UserDetails{
     document.getElementById("tableDisplay").innerHTML = "All Data Deleted!";
   }
 
-  //edit the data in the local storage
+  //edit the data in the local storage by calling it to the form feild
   editData(index) {
     this.editIndex = index;
     document.getElementById("fName").value = this.arr[index].fName;
@@ -71,6 +70,7 @@ class UserDetails{
     document.getElementById("saveBtn").style.display = "block";
   }
 
+  //edit the local storage data and display on the table
   saveEdit() {
 
     this.arr[this.editIndex] = {
@@ -100,7 +100,8 @@ class UserDetails{
     
     let tr=document.createElement("tr");
     tr.innerHTML=`
-    <td>${name}</td>
+    <td>${fname}</td>
+    <td>${lname}</td>
     <td>${age}</td>
     <td>${email}</td>
     <td>${contact}</td>
@@ -111,11 +112,7 @@ class UserDetails{
 
     document.getElementById("tableDisplay").appendChild(tr);
     
-    document.getElementById("fName").value = "";
-    document.getElementById("lName").value = "";
-    document.getElementById("age").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("number").value = "";
+    document.getElementById("formDetails").reset();
     document.getElementById("saveBtn").style.display = "none";
     document.getElementById("addBtn").style.display = "block";
 
