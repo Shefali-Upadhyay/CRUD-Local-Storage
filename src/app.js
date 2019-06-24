@@ -10,24 +10,27 @@ class UserDetails{
   //delete the data from the local storage
   deleteData(index) {
     this.arr.splice(parseInt(index), 1);
-    let value = JSON.stringify(this.arr);
+    const value = JSON.stringify(this.arr);
     localStorage.setItem("localData", value); 
 
     //removing the data displayed
-    let td = event.target.parentNode; 
-    let tr = td.parentNode;
+    const td = event.target.parentNode; 
+    const tr = td.parentNode;
     tr.parentNode.removeChild(tr);
   }
 
-  //get data from local storage and display the local storage data on the screen
-  showData() {
-    let tbl = document.getElementById("tableDisplay");
-    let str = localStorage.getItem("localData");
-    let x = tbl.rows.length;
+  //resetting the form input value and the visibility of buttons
+  resetForm(){
+    document.getElementById("formDetails").reset();
+    document.getElementById("saveBtn").style.display = "none";
+    document.getElementById("addBtn").style.display = "block";
+  }
 
-    while(--x){
-      tbl.deleteRow(x);
-    }
+  //get data from local storage and display the local storage data on the screen in table format
+  showData() {
+    const tbl = document.getElementById("tableDisplay");
+    const str = localStorage.getItem("localData");
+
     //checking whether the local storage is not empty
     if (str != null) {
       this.arr = JSON.parse(str);
@@ -47,9 +50,7 @@ class UserDetails{
       }
     }
 
-    document.getElementById("formDetails").reset();
-    document.getElementById("saveBtn").style.display = "none";
-    document.getElementById("addBtn").style.display = "block";
+    this.resetForm();
   }
 
   //empty the local storage
@@ -82,29 +83,48 @@ class UserDetails{
     };
 
     localStorage.setItem("localData", JSON.stringify(this.arr));
-    this.showData();
+    // this.showData();
+    let x = document.getElementsByTagName("tr"); //const
+    x[this.editIndex+1].innerHTML=`
+    <td>${this.arr[this.editIndex].fName}</td>
+    <td>${this.arr[this.editIndex].lName}</td>
+    <td>${this.arr[this.editIndex].age}</td>
+    <td>${this.arr[this.editIndex].email}</td>
+    <td>${this.arr[this.editIndex].number}</td>
+    <td>
+      <button type="button" class="btn btn-warning" onClick="test.editData(${this.editIndex});"> Edit </button>
+      <button type="button" class="btn btn-danger" onClick="test.deleteData(${this.editIndex});"> Delete </button>
+    </td>`;
+
+    this.resetForm();
   }
 
   //add data to local storage
   addData() {
-    
-    this.arr.push({
+    const values = {
       fName: document.getElementById("fName").value,
       lName: document.getElementById("lName").value,
       age: document.getElementById("age").value,
       email: document.getElementById("email").value,
       number: document.getElementById("number").value
+    }
+    this.arr.push({
+      fName: values.fName,
+      lName: values.lName,
+      age: values.age,
+      email: values.email,
+      number: values.number
     });
 
     localStorage.setItem("localData", JSON.stringify(this.arr)); 
     
     let tr=document.createElement("tr");
     tr.innerHTML=`
-    <td>${fname}</td>
-    <td>${lname}</td>
-    <td>${age}</td>
-    <td>${email}</td>
-    <td>${contact}</td>
+    <td>${values.fName}</td>
+    <td>${values.lName}</td>
+    <td>${values.age}</td>
+    <td>${values.email}</td>
+    <td>${values.number}</td>
     <td>
       <button type="button" class="btn btn-warning" onClick="test.editData(${i});"> Edit </button>
       <button type="button" class="btn btn-danger" onClick="test.deleteData(${i});"> Delete </button>
@@ -112,12 +132,10 @@ class UserDetails{
 
     document.getElementById("tableDisplay").appendChild(tr);
     
-    document.getElementById("formDetails").reset();
-    document.getElementById("saveBtn").style.display = "none";
-    document.getElementById("addBtn").style.display = "block";
+    this.resetForm();
 
   }
 }
 
-let test = new UserDetails();
+const test = new UserDetails();
 test.showData();

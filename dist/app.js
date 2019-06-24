@@ -9,6 +9,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var UserDetails =
 /*#__PURE__*/
 function () {
+  //intialising variables
   function UserDetails() {
     _classCallCheck(this, UserDetails);
 
@@ -22,23 +23,26 @@ function () {
     value: function deleteData(index) {
       this.arr.splice(parseInt(index), 1);
       var value = JSON.stringify(this.arr);
-      localStorage.setItem("localData", value);
+      localStorage.setItem("localData", value); //removing the data displayed
+
       var td = event.target.parentNode;
       var tr = td.parentNode;
       tr.parentNode.removeChild(tr);
-    } //get data from local storage and display the local storage data on the screen
+    } //resetting the form input value and the visibility of buttons
+
+  }, {
+    key: "resetForm",
+    value: function resetForm() {
+      document.getElementById("formDetails").reset();
+      document.getElementById("saveBtn").style.display = "none";
+      document.getElementById("addBtn").style.display = "block";
+    } //get data from local storage and display the local storage data on the screen in table format
 
   }, {
     key: "showData",
     value: function showData() {
       var tbl = document.getElementById("tableDisplay");
-      var str = localStorage.getItem("localData");
-      var x = tbl.rows.length;
-
-      while (--x) {
-        tbl.deleteRow(x);
-      } //checking whether the local storage is not empty
-
+      var str = localStorage.getItem("localData"); //checking whether the local storage is not empty
 
       if (str != null) {
         this.arr = JSON.parse(str);
@@ -49,9 +53,7 @@ function () {
         }
       }
 
-      document.getElementById("formDetails").reset();
-      document.getElementById("saveBtn").style.display = "none";
-      document.getElementById("addBtn").style.display = "block";
+      this.resetForm();
     } //empty the local storage
 
   }, {
@@ -59,7 +61,7 @@ function () {
     value: function deleteLocalStorageData() {
       localStorage.clear();
       document.getElementById("tableDisplay").innerHTML = "All Data Deleted!";
-    } //edit the data in the local storage
+    } //edit the data in the local storage by calling it to the form feild
 
   }, {
     key: "editData",
@@ -72,7 +74,8 @@ function () {
       document.getElementById("number").value = this.arr[index].number;
       document.getElementById("addBtn").style.display = "none";
       document.getElementById("saveBtn").style.display = "block";
-    }
+    } //edit the local storage data and display on the table
+
   }, {
     key: "saveEdit",
     value: function saveEdit() {
@@ -83,27 +86,36 @@ function () {
         email: document.getElementById("email").value,
         number: document.getElementById("number").value
       };
-      localStorage.setItem("localData", JSON.stringify(this.arr));
-      this.showData();
+      localStorage.setItem("localData", JSON.stringify(this.arr)); // this.showData();
+
+      var x = document.getElementsByTagName("tr"); //const
+
+      x[this.editIndex + 1].innerHTML = "\n    <td>".concat(this.arr[this.editIndex].fName, "</td>\n    <td>").concat(this.arr[this.editIndex].lName, "</td>\n    <td>").concat(this.arr[this.editIndex].age, "</td>\n    <td>").concat(this.arr[this.editIndex].email, "</td>\n    <td>").concat(this.arr[this.editIndex].number, "</td>\n    <td>\n      <button type=\"button\" class=\"btn btn-warning\" onClick=\"test.editData(").concat(this.editIndex, ");\"> Edit </button>\n      <button type=\"button\" class=\"btn btn-danger\" onClick=\"test.deleteData(").concat(this.editIndex, ");\"> Delete </button>\n    </td>");
+      this.resetForm();
     } //add data to local storage
 
   }, {
     key: "addData",
     value: function addData() {
-      this.arr.push({
+      var values = {
         fName: document.getElementById("fName").value,
         lName: document.getElementById("lName").value,
         age: document.getElementById("age").value,
         email: document.getElementById("email").value,
         number: document.getElementById("number").value
+      };
+      this.arr.push({
+        fName: values.fName,
+        lName: values.lName,
+        age: values.age,
+        email: values.email,
+        number: values.number
       });
       localStorage.setItem("localData", JSON.stringify(this.arr));
       var tr = document.createElement("tr");
-      tr.innerHTML = "\n    <td>".concat(fname, "</td>\n    <td>").concat(lname, "</td>\n    <td>").concat(age, "</td>\n    <td>").concat(email, "</td>\n    <td>").concat(contact, "</td>\n    <td>\n      <button type=\"button\" class=\"btn btn-warning\" onClick=\"test.editData(").concat(i, ");\"> Edit </button>\n      <button type=\"button\" class=\"btn btn-danger\" onClick=\"test.deleteData(").concat(i, ");\"> Delete </button>\n    </td>");
+      tr.innerHTML = "\n    <td>".concat(values.fName, "</td>\n    <td>").concat(values.lName, "</td>\n    <td>").concat(values.age, "</td>\n    <td>").concat(values.email, "</td>\n    <td>").concat(values.number, "</td>\n    <td>\n      <button type=\"button\" class=\"btn btn-warning\" onClick=\"test.editData(").concat(i, ");\"> Edit </button>\n      <button type=\"button\" class=\"btn btn-danger\" onClick=\"test.deleteData(").concat(i, ");\"> Delete </button>\n    </td>");
       document.getElementById("tableDisplay").appendChild(tr);
-      document.getElementById("formDetails").reset();
-      document.getElementById("saveBtn").style.display = "none";
-      document.getElementById("addBtn").style.display = "block";
+      this.resetForm();
     }
   }]);
 
