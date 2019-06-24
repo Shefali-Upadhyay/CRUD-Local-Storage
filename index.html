@@ -15,7 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
@@ -26,7 +26,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Courgette|Luckiest+Guy|Permanent+Marker&display=swap" rel="stylesheet">
         
-    <title>CRUD Local Storage</title>
+    <title>Local Storage CRUD</title>
 
     <!-- Stylesheet -->
     <link type="text/css" rel="stylesheet" href="style.css" />
@@ -38,7 +38,7 @@
         
     <h1 CLASS="text-center mt-5" id="title">ADD, EDIT AND DELETE TABLE ROW</h1>
     <div class="container p-5 bg-success my-5 rounded">
-      <div class="border border-dark rounded p-1 bg-light">
+      <div class="border border-dark rounded p-1 bg-light table-responsive text-nowrap">
         <table class="text-center table mt-3" align="center" id="tableDisplay">
           <tr class="bg-warning">
             <th>First Name</th>
@@ -50,9 +50,9 @@
           </tr>
         </table>
       </div>
-      <button type="button" class="btn btn-light btn-block mt-3" id="clearBtn"> CLEAR DATA </button>
+      <button type="button" class="btn btn-light btn-block mt-3" id="clearBtn" onclick="test.deleteLocalStorageData()"> CLEAR DATA </button>
       <div class="border border-dark rounded bg-warning p-3 mt-3">
-        <form>
+        <form onsubmit="test.addData()" id="formDetails">
           <div class="form-group row">
             <label for="fName" class="col-md-2 col-form-label">First Name</label>
             <div class="col-md-10">
@@ -84,7 +84,7 @@
             </div>
           </div>
           <button class="btn btn-primary btn-block" id="addBtn" type="submit"> ADD </button>
-          <button class="btn btn-primary btn-block" id="saveBtn" type="submit"> SAVE </button>
+          <button class="btn btn-primary btn-block" id="saveBtn" type="button" onclick="test.saveEdit()"> SAVE </button>
         </form>
       </div>
     </div>

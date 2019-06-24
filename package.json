@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "crud with local storage",
   "main": "index.js",
-  "scripts": { "build": "babel src --out-dir dist"},
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
   "author": "Shefali",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.5"
   }
 }
